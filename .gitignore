@@ -1,1 +1,7 @@
 /iris_data.csv
+mlruns/
+mlflow.db
+model.pkl
+__pycache__/
+*.pyc
+*.pyo

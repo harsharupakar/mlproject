@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import mlflow
 import joblib
@@ -19,6 +20,11 @@ pipeline = Pipeline([
 
 param_grid = {"model__C": [0.1, 1, 10]}
 grid = GridSearchCV(pipeline, param_grid, cv=2)
+
+# Use SQLite backend — avoids Windows %20 path-encoding bug and the
+# deprecated filesystem store warning (deprecated Feb 2026).
+db_path = os.path.abspath("mlflow.db").replace("\\", "/")
+mlflow.set_tracking_uri(f"sqlite:///{db_path}")
 
 mlflow.start_run()
 grid.fit(Xtrain, ytrain)

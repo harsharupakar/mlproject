@@ -27,9 +27,13 @@ jobs:
         push: true
         tags: harshakrupakar/workshop_2:latest
 
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
       with:
         app-name: MLMODEL2
-        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
         images: 'harshakrupakar/workshop_2:latest'

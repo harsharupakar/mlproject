@@ -1,4 +1,3 @@
-/iris_data.csv
 mlruns/
 mlflow.db
 model.pkl
